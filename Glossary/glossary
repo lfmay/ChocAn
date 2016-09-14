@@ -1,0 +1,17 @@
+Acme Accounting Services: third-party organization responsible for financial procedures
+Chocoholics Anonymous(ChocAn): organization dedicated to helping people addicted to all forms of chocolate. 
+ChocAn Data Center: holds the data for the ChocAn company
+Electronic Funds Transfer (EFT) Data: data that is later used to ensure that each provider's bank account is credited with the appropriate amount
+Interactive Mode: a mode of the ChocAn Data Center. allows operators to add, delete, and update members
+Main Accounting Procedure: reads the week's file of services provided and prints a number of reports
+Member Card: every member is given a plastic card embossed with the member's name and a nine-digit member number and incorporating a magnetic strip on which that information is encoded
+Member Number: a 9 digit number unique to each member of ChocAn
+Member Report: includes member name, member number, member street address, member city, member state, member zip code, and for each service provided includes date of service, provider name, and service name
+Member Suspension: the ChocAn member has not paid membership fees for at least a month
+Provider: health care professional who provides services to ChocAn members
+Provider Directory: alphabetically ordered list of service names and corresponding service codes and fees 
+Provider Number: A 9 digit number unique to each provider
+Provider Report: includes provider name, provider number, provider street address, provider city, provider state, provider zip code, date of service, date and time data were received by computer ,member name, member number, service code, fee to be paid, total number of consultation with members, and total fee for week
+Provider Terminal: each provider has their own. similar to a credit card device in a shop. used to access the ChocAn Data Center
+Service Code: a six digit code that corresponds to the service provided
+Service Name: name of the service being provided to the ChocAn member. typically a consultation or treatment with a health care professional

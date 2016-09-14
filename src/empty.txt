@@ -1,0 +1,106 @@
+This file is not empty, but intentionally left here!
+
+
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/AddDialog.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/AddDialog.java:66: error: @param name not found
+	 * @param number - The number to initialize the entry to, being the provider or member number
+	          ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/AddDialog.java:68: warning: no @param for Number
+	public AddDialog(JFrame owner, String title, MainMenu mainMenu, int Number) {
+	       ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ChocAn.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/EFTList.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/Entry.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/MainMenu.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ManagerMenu.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/MemberEntry.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/MemberReport.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/MemberReport.java:31: warning: no description for @param
+	 * @param memberRecords
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/MemberServices.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/Services.java:23: warning: no description for @param
+	 * @param newDate
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/MemberServices.java:16: warning: no description for @param
+	 * @param date
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/MemberServices.java:17: warning: no description for @param
+	 * @param providerName
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/MemberServices.java:18: warning: no description for @param
+	 * @param serviceName
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/Menu.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ModifyRecord.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ModifyRecord.java:138: warning: no description for @param
+	 * @param num
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/OperatorMenu.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ProviderDirectory.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:45: warning: no @return
+	public String getServiceName(String serviceCode) {
+	              ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:58: warning: no @return
+	public int getServicePrice(String serviceCode) {
+	           ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:69: error: @param name not found
+	 * @param serviceCode Six digit code corresponding to a particular service
+	          ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:71: warning: no @param for serviceName
+	public String getServiceCode(String serviceName) {
+	              ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:71: warning: no @return
+	public String getServiceCode(String serviceName) {
+	              ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:84: error: @param name not found
+	 * @param type The type of the Records class
+	          ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:87: warning: no @throws for java.io.FileNotFoundException
+	public void writeToFile(String dir) throws FileNotFoundException, UnsupportedEncodingException {
+	            ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderDirectory.java:87: warning: no @throws for java.io.UnsupportedEncodingException
+	public void writeToFile(String dir) throws FileNotFoundException, UnsupportedEncodingException {
+	            ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ProviderEntry.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ProviderMenu.html...
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ProviderReport.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderReport.java:32: warning: no description for @param
+	 * @param providerRecords
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/ProviderServices.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:20: warning: no description for @param
+	 * @param date
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:21: warning: no description for @param
+	 * @param dateReceived
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:22: warning: no description for @param
+	 * @param memberName
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:23: warning: no description for @param
+	 * @param memberNumber
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:24: warning: no description for @param
+	 * @param serviceCode
+	   ^
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/ProviderServices.java:25: warning: no description for @param
+	 * @param amount
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/Records.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/Records.java:43: warning: no description for @param
+	 * @param entry
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/Report.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/Report.java:13: warning: no description for @param
+	 * @param record
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/Services.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/Services.java:15: warning: no description for @param
+	 * @param date
+	   ^
+Generating /Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/doc/SummaryReport.html...
+/Users/NateHochstetler/Documents/Development/School/CS315/git/cs315fall2015team7/src/SummaryReport.java:32: warning: no description for @param
+	 * @param providerRecords
+3 errors
+24 warnings

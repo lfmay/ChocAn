@@ -1,0 +1,92 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Hashtable;
+
+/**
+ * The class representing the ChocAn 'Provider Directory'
+ * @author Crawford King
+ */
+
+public class ProviderDirectory {
+	
+	private Hashtable<String, String[]> directory;
+	
+	/**
+	 * Constructor for class
+	 */
+	public ProviderDirectory() {
+		this.directory = new Hashtable<String, String[]>();
+	}
+	
+	
+	/**
+	 * Adds a new service to the directory
+	 * @param serviceCode Six digit code tied to service
+	 * @param servicePrice Price of service
+	 * @param serviceName Name of service
+	 */
+	
+	public void addService(String serviceCode, String serviceName, int servicePrice) {
+		
+		String[] temp = new String[2];
+		temp[1] = serviceName;
+		temp[2] = Integer.toString(servicePrice);
+		directory.put(serviceCode, temp);
+	}
+	
+	/**
+	 * Returns service name for given service code.
+	 * @param serviceCode Six digit code corresponding to a particular service
+	 */
+	
+	public String getServiceName(String serviceCode)
+	{
+		String[] temp = directory.get(serviceCode);
+		return temp[1];
+	}
+	
+	/**
+	 * Returns service price for given service code.
+	 * @param serviceCode Six digit code corresponding to a particular service
+	 */
+	
+	public int getServicePrice(String serviceCode)
+	{
+		String[] temp = directory.get(serviceCode);
+		return Integer.parseInt(temp[2]);
+	}
+	
+	/**
+	 * Writes a formatted text file of all service codes and names to current directory.
+	 * This is the 'placebo' for Provider Directory being emailed to a provider.
+	 * @param entries The list of Entry objects
+	 * @param type The type of the Records class
+	 */
+	
+	public void writeToFile() throws FileNotFoundException, UnsupportedEncodingException {
+		PrintWriter writer = new PrintWriter("Provider Directory.txt", "UTF-8");
+		String format = "%-40s%s%n";
+		writer.printf(format, "------------", "------------");	
+		writer.printf(format, "Service Name", "Service Code");
+		writer.printf(format, "------------", "------------");		
+		
+		String tableStr = directory.toString();
+		String[] strArr = tableStr.split(",");
+		strArr[0] = strArr[0].substring(1);
+		strArr[strArr.length - 1] = strArr[strArr.length - 1].substring(1, strArr[strArr.length - 1].length() - 1);
+		format = "%-43s%s%n";
+
+		
+		for (String s : strArr) {
+			String entryStr = (s.trim());
+			String[] entryArr = entryStr.split("=");
+			writer.printf(format, entryArr[1], entryArr[0]);
+		}
+		
+		writer.close();
+		
+	}
+	
+
+}

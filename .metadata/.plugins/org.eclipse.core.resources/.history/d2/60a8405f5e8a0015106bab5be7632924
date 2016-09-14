@@ -1,0 +1,290 @@
+import java.io.FileWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.text.*;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+public class ChocAn {
+	
+	private Records mMemberRecords = new Records("Member");
+	private Records mProviderRecords = new Records("Provider");
+	public int memberCounter, providerCounter;
+	private MainMenu mMainMenu;
+	
+	public ChocAn(){
+		try {
+			openRecords();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//These two function upon initilization ,will search through the databases and look for the highest
+		//Member number, it will then be saved so a new member number can then be created.
+		ArrayList<Entry> entries = mProviderRecords.searchEntry();
+		if (entries.size() > 0) {
+			providerCounter = Integer.parseInt(entries.get(entries.size()-1).getNumber())+1;
+		}
+		else {
+			providerCounter = 0;
+		}
+		
+		entries = mMemberRecords.searchEntry();
+		if (entries.size() > 0) {
+			memberCounter = Integer.parseInt(entries.get(entries.size()-1).getNumber())+1;
+		}
+		else {
+			memberCounter = 0;
+		}
+			
+	}
+	
+	//MAIN FUNCTION HAS BEEN MOVED TO ActorTest.java SO A CHOCAN OBJECT COULD BE CREATED
+	public void startTerminal() {
+		MainMenu mainMenu = new MainMenu(this);
+		mMainMenu = mainMenu;
+		 
+	}
+	
+	public void addRecord(Entry entry, String menu) {
+		
+		//Creates a temp entry to make sure that will be stored as a new object in Records
+		
+		//Adds to the correct Records Set, depending on what menu invoked the call
+		if (menu.equals("Provider")) {
+			mProviderRecords.addEntry(entry);
+		}
+		else if (menu.equals("Member")) {
+			mMemberRecords.addEntry(entry);
+			
+		}
+	}
+	
+	public void updateRecord(Entry entry, int index, String menu) {
+		if (menu.equals("Provider")) {
+			mProviderRecords.updateEntry(entry, index);
+		}
+		else if (menu.equals("Member")) {
+			mMemberRecords.updateEntry(entry, index);
+		}
+	}
+	
+	public void removeRecord(int index, String menu){
+		if (menu.equals("Provider")) {
+			mProviderRecords.removeEntry(index);
+		}
+		else if (menu.equals("Member")) {
+			mMemberRecords.removeEntry(index);
+		}
+	}
+	
+	public void createMemberReports() {
+		MemberReport tempReport = new MemberReport( mMemberRecords);
+		ArrayList<String> tempReports = tempReport.generateReport();
+		for (int i = 0; i < tempReports.size(); i++){
+			JFileChooser fileChooser = new JFileChooser();
+			int returnVal = fileChooser.showSaveDialog(mMainMenu);
+			if (returnVal == JFileChooser.APPROVE_OPTION){
+				String file = fileChooser.getSelectedFile().getAbsolutePath();
+				try{
+					FileWriter writer = new FileWriter(file);
+					writer.write(tempReports.get(i));
+					writer.flush();
+					writer.close();
+				}
+				catch(FileNotFoundException e1){
+					e1.printStackTrace();
+				}
+				catch(IOException e2){
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void createProviderReports() {
+		ProviderReport tempReport = new ProviderReport( mProviderRecords);
+		ArrayList<String> tempReports = tempReport.generateReport();
+		for (int i = 0; i < tempReports.size(); i++){
+			JFileChooser fileChooser = new JFileChooser();
+			int returnVal = fileChooser.showSaveDialog(mMainMenu);
+			if (returnVal == JFileChooser.APPROVE_OPTION){
+				String file = fileChooser.getSelectedFile().getAbsolutePath();
+				try{
+					FileWriter writer = new FileWriter(file);
+					writer.write(tempReports.get(i));
+					writer.flush();
+					writer.close();
+				}
+				catch(FileNotFoundException e1){
+					e1.printStackTrace();
+				}
+				catch(IOException e2){
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public boolean checkMemberStatus(String number) {
+		for (int i = 0; i < mMemberRecords.searchEntry().size(); i++) {
+			if (number.equals(mMemberRecords.searchEntry().get(i).getNumber())) {
+				boolean tempBoolean = mMemberRecords.searchEntry().get(i).getStatus();
+				if (tempBoolean == true) {
+					return true;
+				}
+				else if (tempBoolean == false) {
+					JOptionPane.showMessageDialog(null, "This member is suspended");
+					return false;
+				}
+			}
+		}
+		JOptionPane.showMessageDialog(null, "Invalid - There is no member associated with that number");
+		return false;
+	}
+	
+	public boolean checkProviderStatus(String providerNumber) {
+		for (int i = 0; i < mProviderRecords.searchEntry().size(); i++) {
+			if (providerNumber.equals(mProviderRecords.searchEntry().get(i).getNumber())) {
+				return true;
+			}
+		}
+		JOptionPane.showMessageDialog(null, "Invalid Provider Number");
+
+		return false;
+	}
+	
+	public void SimulateCardSwipe(){
+		Boolean validProvider = false;
+		Boolean validMember = false;
+		Boolean dateValidation = false;
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		String memberNumber = null, providerNumber = null, inputDate = null;
+		while (validProvider == false) {
+			try {
+				providerNumber = JOptionPane.showInputDialog("Please Enter in your Provider Number");
+				validProvider = checkProviderStatus(providerNumber);
+			} catch (NullPointerException e) {
+				break;
+			}
+			
+		}
+		if (validProvider) { 
+			while (validMember == false){
+				try {
+					memberNumber = JOptionPane.showInputDialog("Please enter in the member number");
+					validMember = checkMemberStatus(memberNumber);
+				} catch (NullPointerException e) {
+					break;
+				}
+			} // End While
+		} //EndIF
+		if (validMember){
+			JOptionPane.showMessageDialog(null, "Validated - The member is active.");
+			while (dateValidation == false)
+			try {
+				inputDate = JOptionPane.showInputDialog("Please enter in date in dd-mm-yyyy format");
+				try {
+					formatter.setLenient(false);
+					System.out.printf(inputDate);
+					formatter.parse(inputDate);
+					dateValidation = true;
+				} catch (java.text.ParseException e) {
+					JOptionPane.showMessageDialog(null, "Invalid Date - Remember, dd-MM-yyyy");
+				}
+			} catch (NullPointerException e) {
+				break;
+			}
+
+		} //eND iF
+		
+		if (dateValidation) {
+			
+		}
+	} // End SimulateCard Swipe
+		
+		
+	
+	public int getProviderCounter() {
+		return providerCounter;
+	}
+	public int getMemberCounter() {
+		return memberCounter;
+	}
+	
+	public void setProviderCounter(int num) {
+		providerCounter = num;
+	}
+	
+	public void setMemberCounter (int num) {
+		memberCounter = num;
+		
+	}
+	
+	public Records getmMemberRecords() {
+		return mMemberRecords;
+	}
+
+	public Records getmProviderRecords() {
+		return mProviderRecords;
+	}
+	
+	public void saveRecords() throws FileNotFoundException, IOException {
+		String dir = Paths.get(".").toAbsolutePath().normalize().toString();
+	    File f = new File(dir+"/member");
+	   	if (f.exists()) {
+	    	f.delete();
+	    }
+	    
+	    ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(dir+"/member"));
+	    
+	    output.writeObject(mMemberRecords);
+	    output.flush();
+	    output.close();
+	    
+	    f = new File(dir+"/provider");
+	   	if (f.exists()) {
+	    	f.delete();
+	    }
+	    
+	    output = new ObjectOutputStream(new FileOutputStream(dir+"/provider"));
+	    
+	    output.writeObject(mProviderRecords);
+	    output.flush();
+	    output.close();
+	}
+	
+	public void openRecords() throws FileNotFoundException, IOException, ClassNotFoundException {
+		String dir = Paths.get(".").toAbsolutePath().normalize().toString();
+	   	ObjectInputStream memberInput = new ObjectInputStream(new FileInputStream(dir+"/member"));
+	   	ObjectInputStream providerInput = new ObjectInputStream(new FileInputStream(dir+"/provider"));
+	    	
+	    mProviderRecords = (Records)providerInput.readObject();
+	    mMemberRecords = (Records)memberInput.readObject();
+	    	
+	    providerInput.close();
+	    memberInput.close();
+	}
+	
+
+	
+}
+
+
